@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-28T21:13:28 IST" name="Suite" finished-at="2026-07-28T21:13:35 IST" duration-ms="7440">
+  <suite started-at="2026-07-29T00:50:36 IST" name="Suite" finished-at="2026-07-29T00:50:55 IST" duration-ms="18418">
     <groups>
     </groups>
-    <test started-at="2026-07-28T21:13:28 IST" name="Test" finished-at="2026-07-28T21:13:35 IST" duration-ms="7440">
+    <test started-at="2026-07-29T00:50:36 IST" name="Test" finished-at="2026-07-29T00:50:55 IST" duration-ms="18418">
       <class name="tutorialsninja.register.TC_RF_001">
-        <test-method signature="verifyRegisterWithManadatoryField()[pri:0, instance:tutorialsninja.register.TC_RF_001@76508ed1]" started-at="2026-07-28T21:13:28 IST" name="verifyRegisterWithManadatoryField" finished-at="2026-07-28T21:13:35 IST" duration-ms="7367" status="PASS">
+        <test-method signature="verifyRegisterWithManadatoryField()[pri:0, instance:tutorialsninja.register.TC_RF_001@76508ed1]" started-at="2026-07-29T00:50:36 IST" name="verifyRegisterWithManadatoryField" finished-at="2026-07-29T00:50:55 IST" duration-ms="18347" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyRegisterWithManadatoryField -->
