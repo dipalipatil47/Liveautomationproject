@@ -15,7 +15,6 @@ public class GenerateEmailDemo {
 		 System.out.println(emailWithTimeStamp);
 		 
 	}
-
 	
 
 }
