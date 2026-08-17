@@ -9,10 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TC_RF_008 {
+public class TC_RF_009 {
 
 	@Test
-	public void verifyRegistringRegisterAccountByDifferentFieldCheckConfirmPassword() {
+	public void verifyRegistringAccountExistingEmailAddress() {
 
 		WebDriver driver = new ChromeDriver();
 
@@ -24,25 +24,18 @@ public class TC_RF_008 {
 
 		driver.findElement(By.id("input-firstname")).sendKeys("dipali");
 		driver.findElement(By.id("input-lastname")).sendKeys("patil");
-		driver.findElement(By.id("input-email")).sendKeys(generateNewEmail());
+		driver.findElement(By.id("input-email")).sendKeys("dipalipatil8390@gmail.com");
 		driver.findElement(By.id("input-telephone")).sendKeys("4456567654");
 		driver.findElement(By.id("input-password")).sendKeys("12345");
 		driver.findElement(By.id("input-confirm")).sendKeys("1234567");
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value=\"Continue\"]")).click();
-		
-		String expectedWarningMsg="Password confirmation does not match password!";
-		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='input-confirm']/following-sibling::div")).getText(), expectedWarningMsg);
-		
-		
 
-	
-	
-	}
-
-	public String generateNewEmail() {
-		return new Date().toString().replaceAll(" ", "").replaceAll("\\:", "") + "@gmail.com";
+		String expectedWarningMsg = "Warning: E-Mail Address is already registered!";
+		Assert.assertEquals(
+				driver.findElement(By.xpath("//div[@class='alert alert-danger alert-dismissible']")).getText(),
+				expectedWarningMsg);
 
 	}
 }

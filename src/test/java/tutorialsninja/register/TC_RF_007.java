@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class TC_RF_007 {
 
 	@Test
-	public void verifyRegistringAccountBySayingNoToNewsletter() {
+	public void verifyRegistringAccountByRightSide() {
 
 		WebDriver driver = new ChromeDriver();
 
