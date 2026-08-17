@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-17T17:30:32 IST" name="Default suite" finished-at="2026-08-17T17:30:41 IST" duration-ms="8675">
+  <suite started-at="2026-08-17T18:24:45 IST" name="Default suite" finished-at="2026-08-17T18:24:59 IST" duration-ms="13638">
     <groups>
     </groups>
-    <test started-at="2026-08-17T17:30:32 IST" name="Default test" finished-at="2026-08-17T17:30:41 IST" duration-ms="8675">
-      <class name="tutorialsninja.register.TC_RF_004">
-        <test-method signature="verifyRegistringAccountWithoutFillFields()[pri:0, instance:tutorialsninja.register.TC_RF_004@351d00c0]" started-at="2026-08-17T17:30:32 IST" name="verifyRegistringAccountWithoutFillFields" finished-at="2026-08-17T17:30:41 IST" duration-ms="8584" status="PASS">
+    <test started-at="2026-08-17T18:24:45 IST" name="Default test" finished-at="2026-08-17T18:24:59 IST" duration-ms="13638">
+      <class name="tutorialsninja.register.TC_RF_005">
+        <test-method signature="verifyRegistringAccountWithoutFillFields()[pri:0, instance:tutorialsninja.register.TC_RF_005@2a3b5b47]" started-at="2026-08-17T18:24:45 IST" name="verifyRegistringAccountWithoutFillFields" finished-at="2026-08-17T18:24:59 IST" duration-ms="13545" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyRegistringAccountWithoutFillFields -->
-      </class> <!-- tutorialsninja.register.TC_RF_004 -->
+      </class> <!-- tutorialsninja.register.TC_RF_005 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
