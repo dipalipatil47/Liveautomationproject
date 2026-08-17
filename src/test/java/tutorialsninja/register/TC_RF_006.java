@@ -9,10 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TC_RF_005 {
+public class TC_RF_006 {
 
 	@Test
-	public void verifyRegistringAccountBySayingYesToNewsletter() {
+	public void verifyRegistringAccountBySayingNoToNewsletter() {
 
 		WebDriver driver = new ChromeDriver();
 
@@ -29,7 +29,7 @@ public class TC_RF_005 {
 		driver.findElement(By.id("input-password")).sendKeys("12345");
 		driver.findElement(By.id("input-confirm")).sendKeys("12345");
 
-		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
+		driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value=\"Continue\"]")).click();
 
@@ -37,7 +37,7 @@ public class TC_RF_005 {
 		driver.findElement(By.linkText("Subscribe / unsubscribe to newsletter")).click();
 		Assert.assertTrue(
 				driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Newsletter']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).isSelected());
+		Assert.assertTrue(driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).isSelected());
 	}
 
 	public String generateNewEmail() {
