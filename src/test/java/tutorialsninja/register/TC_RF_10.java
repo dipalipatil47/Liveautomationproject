@@ -1,12 +1,8 @@
 package tutorialsninja.register;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Date;
-
-import javax.imageio.ImageIO;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -17,50 +13,116 @@ import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import ru.yandex.qatools.ashot.comparison.ImageDiff;
-import ru.yandex.qatools.ashot.comparison.ImageDiffer;
-
 public class TC_RF_10 {
 
 	@Test
-	public void verifyRegistringAccountUsingInvalidEmail() throws InterruptedException, IOException {
+	public void verifyRegisteringAccountUsingInvalidEmail() throws InterruptedException, IOException {
 
 		WebDriver driver = new ChromeDriver();
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-		driver.manage().window().maximize();
-		driver.get("https://tutorialsninja.com/demo");
-		driver.findElement(By.xpath("//span[text()='My Account']")).click();
-		driver.findElement(By.linkText("Register")).click();
+		try {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("dipali");
-		driver.findElement(By.id("input-lastname")).sendKeys("patil");
-		driver.findElement(By.id("input-email")).sendKeys("dipali");
-		driver.findElement(By.id("input-telephone")).sendKeys("4456567654");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("1234567");
-		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
-		driver.findElement(By.name("agree")).click();
-		driver.findElement(By.xpath("//input[@value=\"Continue\"]")).click();
+			// =====================================================
+			// Browser Setup
+			// =====================================================
 
-		Thread.sleep(3000);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			driver.manage().window().maximize();
 
-		// TakesScreenshot
-		File src1 = driver.findElement(By.xpath("//form[@class='form-horizontal']")).getScreenshotAs(OutputType.FILE);
-		FileHandler.copy(src1, new File(System.getProperty("user.dir") + "\\Screenshots\\sc1Actual.png"));
+			driver.get("https://tutorialsninja.com/demo");
 
-		BufferedImage actual = ImageIO.read(new File(System.getProperty("user.dir") + "\\Screenshots\\sc1Actual.png"));
-		BufferedImage expected = ImageIO.read(new File(System.getProperty("user.dir") + "\\Screenshots\\sc1Expected.png"));
+			// =====================================================
+			// Navigate to Register Account
+			// =====================================================
 
-		ImageDiffer imgDiffer = new ImageDiffer();
-		ImageDiff imgDifference=imgDiffer.makeDiff(expected, actual);
-		
-		Boolean b=imgDifference.hasDiff();
-		System.out.println(b);
-		
-		Assert.assertFalse(imgDifference.hasDiff());
-		
-		driver.quit();
+			driver.findElement(By.xpath("//span[text()='My Account']")).click();
 
+			driver.findElement(By.linkText("Register")).click();
+
+			// =====================================================
+			// Enter Registration Details
+			// =====================================================
+
+			driver.findElement(By.id("input-firstname")).sendKeys("Dipali");
+
+			driver.findElement(By.id("input-lastname")).sendKeys("Patil");
+
+			driver.findElement(By.id("input-email")).sendKeys("dipali@gmail");
+
+			driver.findElement(By.id("input-telephone")).sendKeys("09146220946");
+
+			driver.findElement(By.id("input-password")).sendKeys("1234");
+
+			driver.findElement(By.id("input-confirm")).sendKeys("1234");
+
+			// Newsletter - No
+			driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).click();
+
+			// Agree to Privacy Policy
+			driver.findElement(By.name("agree")).click();
+
+			// =====================================================
+			// Click Continue
+			// =====================================================
+
+			driver.findElement(By.xpath("//input[@value='Continue']")).click();
+
+			Thread.sleep(2000);
+
+			// =====================================================
+			// Verify Invalid Email Error Message
+			// =====================================================
+
+			String expectedWarningMessage = "E-Mail Address does not appear to be valid!";
+
+			String actualWarningMessage = driver
+					.findElement(By.xpath("//input[@id='input-email']/following-sibling::div")).getText();
+
+			System.out.println("Expected Warning Message : " + expectedWarningMessage);
+
+			System.out.println("Actual Warning Message   : " + actualWarningMessage);
+
+			Assert.assertEquals(actualWarningMessage, expectedWarningMessage,
+					"Invalid email validation message is incorrect.");
+
+			// =====================================================
+			// Take Screenshot
+			// =====================================================
+
+			captureScreenshot(driver, "TC_RF_10_InvalidEmail.png");
+
+			// =====================================================
+			// Test Case Passed
+			// =====================================================
+
+			System.out.println("TC_RF_10 - Invalid Email Test Passed");
+
+		} finally {
+
+			// =====================================================
+			// Close Browser
+			// =====================================================
+
+			driver.quit();
+		}
+	}
+
+	// =============================================================
+	// Screenshot Method
+	// =============================================================
+
+	public void captureScreenshot(WebDriver driver, String fileName) throws IOException {
+
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+		File destination = new File(
+				System.getProperty("user.dir") + File.separator + "Screenshots" + File.separator + fileName);
+
+		// Create Screenshots folder if it does not exist
+		destination.getParentFile().mkdirs();
+
+		FileHandler.copy(source, destination);
+
+		System.out.println("Screenshot saved: " + destination.getAbsolutePath());
 	}
 }
